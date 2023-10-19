@@ -1,15 +1,16 @@
-import { Injectable } from '@nestjs/common';
-import { ConfigService } from '@nestjs/config';
-
+import { Inject, Injectable } from '@nestjs/common';
+import { ConfigService, ConfigType } from '@nestjs/config';
+import config from 'src/config';
 @Injectable()
 export class Database {
     constructor(
-        private configService: ConfigService
+        private configService: ConfigService,
+        @Inject(config.KEY) private envConfig: ConfigType<typeof config>
     ){}
 
     startConnection() {
-        const dbHost = this.configService.get<string>('DB_HOST');
-        const dbPort = this.configService.get<number>('DB_PORT');
-        const dbPass = this.configService.get<string>('DB_PASSWORD');
+        const dbHost = this.envConfig.database.host;
+        const dbPort = this.envConfig.database.port;
+        const dbPass = this.envConfig.database.password;
     }
 }

@@ -4,10 +4,13 @@ import { AppService } from './app.service';
 import { TeachersModule } from './modules/teachers/teachers.module';
 import { SharedModule } from './modules/shared/shared.module';
 import { ConfigModule } from '@nestjs/config';
+import { environments } from './environments';
+import config from './config';
 @Module({ 
   imports: [
     ConfigModule.forRoot({
-      envFilePath: '.env',
+      envFilePath: environments[process.env.NODE_ENV] || '.env',
+      load: [config],
       isGlobal: true,
     }),
     TeachersModule, 
