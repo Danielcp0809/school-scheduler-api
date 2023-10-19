@@ -1,5 +1,5 @@
 import { Body, Controller, Param, Post, Put } from '@nestjs/common';
-import { TeachersService } from './teachers.service';
+import { TeachersService } from '../services/teachers.service';
 import { CreateTeacherDto, UpdateProductDto } from 'src/validators/teachers.dto';
 @Controller('teachers')
 export class TeachersController {
