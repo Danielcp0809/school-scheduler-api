@@ -1,5 +1,6 @@
-import { IsNotEmpty, IsString, ValidateIf } from 'class-validator';
+import { IsNotEmpty, IsString, IsUUID, ValidateIf } from 'class-validator';
 import { PartialType } from '@nestjs/swagger';
+import { Param, applyDecorators } from '@nestjs/common';
 export class CreateTeacherDto {
     @IsNotEmpty()
     @IsString()
@@ -10,13 +11,4 @@ export class CreateTeacherDto {
     last_name: string;
 }
 
-export class UpdateProductDto extends PartialType(CreateTeacherDto) {
-    @ValidateIf(o => !o.first_name && !o.last_name)
-    @IsNotEmpty({ message: 'At least one parameter should be provided' })
-    @IsString()
-    readonly first_name: string;
-
-    @IsNotEmpty({ message: 'At least one parameter should be provided' })
-    @IsString()
-    readonly last_name: string;
-}
+export class UpdateProductDto extends PartialType(CreateTeacherDto) { }
