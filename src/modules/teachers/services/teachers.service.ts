@@ -12,7 +12,6 @@ export class TeachersService {
     constructor(
         @Inject('ENVIRONMENT') private environment: string,
         @InjectRepository(Teachers) private teachersRepository: Repository<Teachers>,
-        private databaseProvider: Database,
     ) {}
 
     async getAllTeachers() {
@@ -20,8 +19,8 @@ export class TeachersService {
     }
 
     async createTeacher(body: CreateTeacherDto) {
-        this.databaseProvider.startConnection();
-        return await this.teachersRepository.save(body);
+        const newTeacher = this.teachersRepository.create(body);
+        return await this.teachersRepository.save(newTeacher);
     }
     
     async updateTeacher(id: string, body: UpdateProductDto) {
