@@ -45,9 +45,7 @@ $ npm run start:dev
 $ npm run start:prod
 ```
 
-# Create a local SQL DB using Docker
-
-## Test
+## Create a local SQL DB using Docker
 
 ```bash
 # create docker container
