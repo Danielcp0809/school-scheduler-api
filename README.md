@@ -45,17 +45,16 @@ $ npm run start:dev
 $ npm run start:prod
 ```
 
+# Create a local SQL DB using Docker
+
 ## Test
 
 ```bash
-# unit tests
-$ npm run test
+# create docker container
+$ docker-compose up -d azure-sql-db
 
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+# destroy db container
+$ docker-compose down
 ```
 
 ## Support
