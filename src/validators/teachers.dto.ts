@@ -1,6 +1,5 @@
 import { IsNotEmpty, IsString, IsUUID, ValidateIf } from 'class-validator';
 import { ApiProperty, PartialType } from '@nestjs/swagger';
-import { Param, applyDecorators } from '@nestjs/common';
 export class CreateTeacherDto {
     @IsNotEmpty()
     @IsString()
