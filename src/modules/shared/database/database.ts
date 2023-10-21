@@ -1,6 +1,6 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { ConfigService, ConfigType } from '@nestjs/config';
-import config from 'src/config';
+import config from 'src/config/config';
 @Injectable()
 export class Database {
     constructor(

@@ -10,4 +10,7 @@ export class Teachers{
 
     @Column({type: 'varchar', length: 50, nullable: false})
     last_name: string;
+
+    @Column({type: 'bit', default: '1'})
+    is_enabled: boolean;
 }

@@ -5,7 +5,7 @@ import { TeachersModule } from './modules/teachers/teachers.module';
 import { SharedModule } from './modules/shared/shared.module';
 import { ConfigModule } from '@nestjs/config';
 import { environments } from './environments';
-import config from './config';
+import config from './config/config';
 import { configValidationSchema } from './enviroments.validator';
 @Module({ 
   imports: [
