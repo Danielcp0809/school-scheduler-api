@@ -5,7 +5,7 @@ import { ApiOperation, ApiTags } from '@nestjs/swagger';
 import { IsUUID } from 'class-validator';
 import { ValidatePayloadExistsPipe } from 'src/pipes/payload-exist/payload-exist.pipe';
 
-@ApiTags('Teachers')
+@ApiTags('Teacher')
 @Controller('teachers')
 export class TeachersController {
 
