@@ -1,7 +1,8 @@
+import { Audit } from "src/modules/shared/audit/audit.entity";
 import { Column, PrimaryGeneratedColumn, Entity } from "typeorm";
 
 @Entity('Teachers')
-export class Teachers{
+export class Teachers extends Audit{
     @PrimaryGeneratedColumn('uuid')
     id: string;
 
