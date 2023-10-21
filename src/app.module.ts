@@ -7,6 +7,7 @@ import { ConfigModule } from '@nestjs/config';
 import { environments } from './environments';
 import config from './config/config';
 import { configValidationSchema } from './enviroments.validator';
+import { UsersModule } from './modules/users/users.module';
 @Module({ 
   imports: [
     ConfigModule.forRoot({
@@ -16,7 +17,7 @@ import { configValidationSchema } from './enviroments.validator';
       validationSchema: configValidationSchema
     }),
     TeachersModule, 
-    SharedModule
+    SharedModule, UsersModule
   ],
   controllers: [AppController],
   providers: [AppService],
