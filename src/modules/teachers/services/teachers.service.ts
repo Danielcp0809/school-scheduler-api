@@ -2,7 +2,7 @@ import { BadRequestException, Inject, Injectable, NotFoundException } from '@nes
 import { InjectRepository } from '@nestjs/typeorm';
 import { Database } from 'src/modules/shared/database/database';
 import { CreateTeacherDto, UpdateProductDto } from 'src/validators/teachers.dto';
-import { Teacher } from '../entities/teachers.entity';
+import { Teacher } from '../../../models/teachers.entity';
 import { Repository } from 'typeorm';
 import { isUUID } from 'class-validator';
 

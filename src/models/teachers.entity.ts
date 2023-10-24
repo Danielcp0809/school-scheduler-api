@@ -1,6 +1,7 @@
 import { Audit } from "src/modules/shared/audit/audit.entity";
-import { Column, PrimaryGeneratedColumn, Entity, OneToOne, JoinColumn } from "typeorm";
-import { User } from "src/modules/users/entities/users.entity";
+import { Column, PrimaryGeneratedColumn, Entity, OneToOne, ManyToOne, JoinColumn } from "typeorm";
+import { User } from "src/models/users.entity";
+import { School } from "./schools.entity";
 
 @Entity('Teachers')
 export class Teacher extends Audit {
@@ -16,6 +17,13 @@ export class Teacher extends Audit {
     @Column({ type: 'bit', default: 0 })
     is_enabled: boolean;
 
+    @Column({nullable: true })
+    school_id: string;
+
     @OneToOne(() => User, (user) => user.teacher, { nullable: true })
     user: User;
+
+    @ManyToOne(() => School, (school) => school.teachers, { nullable: true })
+    @JoinColumn({name: 'school_id'})
+    school: School;
 }

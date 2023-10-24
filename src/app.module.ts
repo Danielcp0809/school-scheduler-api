@@ -8,6 +8,7 @@ import { environments } from './environments';
 import config from './config/config';
 import { configValidationSchema } from './enviroments.validator';
 import { UsersModule } from './modules/users/users.module';
+import { SchoolsModule } from './modules/schools/schools.module';
 @Module({ 
   imports: [
     ConfigModule.forRoot({
@@ -17,7 +18,7 @@ import { UsersModule } from './modules/users/users.module';
       validationSchema: configValidationSchema
     }),
     TeachersModule, 
-    SharedModule, UsersModule
+    SharedModule, UsersModule, SchoolsModule
   ],
   controllers: [AppController],
   providers: [AppService],
