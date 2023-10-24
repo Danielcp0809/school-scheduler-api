@@ -1,10 +1,9 @@
 import { BadRequestException, Inject, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Database } from 'src/modules/shared/database/database';
 import { CreateTeacherDto, UpdateProductDto } from 'src/validators/teachers.dto';
-import { Teacher } from '../../../models/teachers.entity';
 import { Repository } from 'typeorm';
 import { isUUID } from 'class-validator';
+import { Teacher } from 'src/models/teachers.entity';
 
 @Injectable()
 export class TeachersService {
