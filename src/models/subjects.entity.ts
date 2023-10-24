@@ -1,6 +1,7 @@
 import { Audit } from "src/modules/shared/audit/audit.entity";
-import { Column, Entity, ManyToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, ManyToMany, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { Teacher } from "./teachers.entity";
+import { Hour } from "./hours.entity";
 
 @Entity('Subjects')
 export class Subject extends Audit{
@@ -21,4 +22,7 @@ export class Subject extends Audit{
 
     @ManyToMany(() => Teacher, (teacher) => teacher.subjects)
     teachers: Teacher[];
+
+    @OneToMany(() => Hour, (hour) => hour.subject)
+    hours: Hour[];
 }
