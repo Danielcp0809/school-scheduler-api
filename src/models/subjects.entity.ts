@@ -2,7 +2,7 @@ import { Audit } from "src/modules/shared/audit/audit.entity";
 import { Column, Entity, ManyToMany, PrimaryGeneratedColumn } from "typeorm";
 import { Teacher } from "./teachers.entity";
 
-@Entity('Schools')
+@Entity('Subjects')
 export class Subject extends Audit{
     @PrimaryGeneratedColumn('uuid')
     id: string;
