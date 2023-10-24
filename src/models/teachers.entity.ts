@@ -1,7 +1,8 @@
 import { Audit } from "src/modules/shared/audit/audit.entity";
-import { Column, PrimaryGeneratedColumn, Entity, OneToOne, ManyToOne, JoinColumn } from "typeorm";
+import { Column, PrimaryGeneratedColumn, Entity, OneToOne, ManyToOne, JoinColumn, ManyToMany, JoinTable } from "typeorm";
 import { User } from "src/models/users.entity";
 import { School } from "./schools.entity";
+import { Subject } from "./subjects.entity";
 
 @Entity('Teachers')
 export class Teacher extends Audit {
@@ -23,4 +24,18 @@ export class Teacher extends Audit {
     @ManyToOne(() => School, (school) => school.teachers, { nullable: true })
     @JoinColumn({name: 'school_id'})
     school: School;
+
+    @ManyToMany(() => Subject, (subject) => subject.teachers)
+    @JoinTable({
+        name: 'TeacherSubject',
+        joinColumn: {
+          name: 'teacher_id',
+          referencedColumnName: 'id',
+        },
+        inverseJoinColumn: {
+          name: 'subject_id',
+          referencedColumnName: 'id',
+        },
+    })
+    subjects: Subject[];
 }
