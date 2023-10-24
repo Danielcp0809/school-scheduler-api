@@ -2,6 +2,7 @@ import { Audit } from "src/modules/shared/audit/audit.entity";
 import { Column, PrimaryGeneratedColumn, OneToMany, JoinColumn, Entity } from "typeorm";
 import { Teacher } from "./teachers.entity";
 import { User } from "./users.entity";
+import { Course } from "./courses.entity";
 
 @Entity('Schools')
 export class School extends Audit {
@@ -31,4 +32,7 @@ export class School extends Audit {
 
     @OneToMany(() => User, (user) => user.school)
     users: User[];
+
+    @OneToMany(() => Course, (course) => course.school)
+    courses: Course[];
 }
