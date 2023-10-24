@@ -21,12 +21,6 @@ export class User extends Audit {
     @Column({ type: 'bit', default: 0 })
     is_enabled: boolean;
 
-    @Column({ nullable: true, default: null })
-    teacher_id: string;
-
-    @Column({ nullable: true, default: null })
-    school_id: string;
-
     @OneToOne(() => Credentials, (credentials) => credentials.user)
     credentials: Credentials;
 
