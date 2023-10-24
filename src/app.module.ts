@@ -10,6 +10,7 @@ import { configValidationSchema } from './enviroments.validator';
 import { UsersModule } from './modules/users/users.module';
 import { SchoolsModule } from './modules/schools/schools.module';
 import { SubjectsModule } from './modules/subjects/subjects.module';
+import { HoursModule } from './modules/hours/hours.module';
 @Module({ 
   imports: [
     ConfigModule.forRoot({
@@ -19,7 +20,7 @@ import { SubjectsModule } from './modules/subjects/subjects.module';
       validationSchema: configValidationSchema
     }),
     TeachersModule, 
-    SharedModule, UsersModule, SchoolsModule, SubjectsModule
+    SharedModule, UsersModule, SchoolsModule, SubjectsModule, HoursModule
   ],
   controllers: [AppController],
   providers: [AppService],
