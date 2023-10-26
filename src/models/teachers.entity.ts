@@ -1,10 +1,11 @@
 import { Audit } from "src/modules/shared/audit/audit.entity";
-import { Column, PrimaryGeneratedColumn, Entity, OneToOne, ManyToOne, JoinColumn, ManyToMany, JoinTable } from "typeorm";
+import { Column, PrimaryGeneratedColumn, Entity, OneToOne, ManyToOne, JoinColumn, ManyToMany, JoinTable, Index } from "typeorm";
 import { User } from "src/models/users.entity";
 import { School } from "./schools.entity";
 import { Subject } from "./subjects.entity";
 
 @Entity('Teachers')
+// @Index(['first_name', 'last_name']) // This is a composite index
 export class Teacher extends Audit {
     @PrimaryGeneratedColumn('uuid')
     id: string;
