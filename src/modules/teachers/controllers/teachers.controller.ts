@@ -14,7 +14,7 @@ export class TeachersController {
     constructor(private teacherService: TeachersService){}
 
     @Get()
-    @Public() // Make this endpoint public
+    // @Public() // Make this endpoint public
     @ApiOperation({ summary: 'Get the list of a teachers' })
     getTeachers(@Query() params: FiltersTeachersDto) {
         return this.teacherService.getAllTeachers(params);

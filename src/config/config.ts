@@ -1,6 +1,5 @@
 import { registerAs } from "@nestjs/config";
 import { config as dotenvConfig } from 'dotenv';
-import { DataSource, DataSourceOptions } from "typeorm";
 
 dotenvConfig({ path: '.env' });
 
@@ -12,4 +11,5 @@ export default registerAs('config', () => ({
         username: process.env.DB_USERNAME,
         name: process.env.DB_NAME,
     },
+    apiKey: process.env.API_KEY,
 }))
