@@ -14,7 +14,10 @@ export class TeachersService {
     ) {}
 
     async getAllTeachers() {
-        return await this.teachersRepository.find();
+        return await this.teachersRepository.find({
+            // take: 5,
+            // skip: 0, 
+        });
     }
 
     async createTeacher(body: CreateTeacherDto) {

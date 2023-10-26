@@ -18,7 +18,10 @@ async function bootstrap() {
   // Enable validations globally
   app.useGlobalPipes(new ValidationPipe({
     whitelist: true,
-    forbidNonWhitelisted: true
+    forbidNonWhitelisted: true,
+    transformOptions:{
+      enableImplicitConversion: true // Convert query params to their respective types
+    }
   }))
 
   app.enableCors();
