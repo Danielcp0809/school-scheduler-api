@@ -23,7 +23,6 @@ export class ApiKeyGuard implements CanActivate {
       throw new UnauthorizedException('Missing Authorization Header');
     }
     const token = authHeader.replace('Bearer ', '');
-    console.log(this.configService.apiKey)
     return token === this.configService.apiKey
   }
 }
