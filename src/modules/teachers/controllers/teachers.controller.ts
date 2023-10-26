@@ -1,6 +1,6 @@
-import { Body, Controller, Get, Param, Post, Put, UsePipes } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Put, Query, UsePipes } from '@nestjs/common';
 import { TeachersService } from '../services/teachers.service';
-import { CreateTeacherDto, UpdateProductDto } from 'src/validators/teachers.dto';
+import { CreateTeacherDto, FiltersTeachersDto, UpdateTeacherDto } from 'src/validators/teachers.dto';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
 import { IsUUID } from 'class-validator';
 import { ValidatePayloadExistsPipe } from 'src/pipes/payload-exist/payload-exist.pipe';
@@ -13,8 +13,8 @@ export class TeachersController {
 
     @Get()
     @ApiOperation({ summary: 'Get the list of a teachers' })
-    getTeachers() {
-        return this.teacherService.getAllTeachers();
+    getTeachers(@Query() params: FiltersTeachersDto) {
+        return this.teacherService.getAllTeachers(params);
     }
 
     @Post()
@@ -26,7 +26,7 @@ export class TeachersController {
     @Put(':id')
     @UsePipes(new ValidatePayloadExistsPipe())
     @ApiOperation({ summary: 'Update a teacher' })
-    updateTeacher(@Body() body: UpdateProductDto, @Param('id') id: string) {
+    updateTeacher(@Body() body: UpdateTeacherDto, @Param('id') id: string) {
         return this.teacherService.updateTeacher(id, body)
     }
 }
