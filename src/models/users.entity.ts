@@ -18,7 +18,7 @@ export class User extends Audit {
     @Column({ type: 'varchar', length: 100, nullable: false })
     email: string;
 
-    @Column({ type: 'bit', default: 0 })
+    @Column({ type: 'bit', default: 1 })
     is_enabled: boolean;
 
     @OneToOne(() => Credentials, (credentials) => credentials.user)
