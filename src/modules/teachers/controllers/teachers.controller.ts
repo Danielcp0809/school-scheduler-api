@@ -3,18 +3,16 @@ import { TeachersService } from '../services/teachers.service';
 import { CreateTeacherDto, FiltersTeachersDto, UpdateTeacherDto } from 'src/validators/teachers.dto';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
 import { ValidatePayloadExistsPipe } from 'src/pipes/payload-exist/payload-exist.pipe';
-import { ApiKeyGuard } from 'src/auth/guards/api-key.guard';
-import { Public } from 'src/auth/decorators/public.decorator';
+import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
 
 @ApiTags('Teacher') 
-@UseGuards(ApiKeyGuard) // Makes all endpoints private by default
+@UseGuards(JwtAuthGuard) // Makes all endpoints private by default
 @Controller('teachers')
 export class TeachersController {
 
     constructor(private teacherService: TeachersService){}
 
     @Get()
-    // @Public() // Make this endpoint public
     @ApiOperation({ summary: 'Get the list of a teachers' })
     getTeachers(@Query() params: FiltersTeachersDto) {
         return this.teacherService.getAllTeachers(params);

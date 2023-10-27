@@ -46,7 +46,7 @@ export class UsersService {
                     { username: search },
                     { user: { email: search, is_enabled: true } }
                 ],
-                relations: ['user'],
+                relations: ['user', 'user.school'],
             });
             if (!userCredentials) throw new NotFoundException('User not found');
             return userCredentials;
