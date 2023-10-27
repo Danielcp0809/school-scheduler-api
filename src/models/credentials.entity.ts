@@ -1,6 +1,7 @@
 import { Audit } from "src/modules/shared/audit/audit.entity";
 import { Column, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 import { User } from "./users.entity";
+import { Exclude } from "class-transformer";
 
 @Entity('Credentials')
 export class Credentials extends Audit {
@@ -10,10 +11,11 @@ export class Credentials extends Audit {
     @Column({ type: 'varchar', length: 100, nullable: false })
     username: string;
 
+    @Exclude()
     @Column({ type: 'varchar', length: 'max', nullable: false })
     password: string;
 
-    @Column({ type: 'bit', default: 1 })
+    @Column({ type: 'bit', default: 0 })
     reset_password: boolean;
 
     @Column({ type: 'bit', default: 0 })
