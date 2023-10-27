@@ -12,6 +12,7 @@ import { SchoolsModule } from './modules/schools/schools.module';
 import { SubjectsModule } from './modules/subjects/subjects.module';
 import { HoursModule } from './modules/hours/hours.module';
 import { CoursesModule } from './modules/courses/courses.module';
+import { AuthModule } from './auth/auth.module';
 @Module({ 
   imports: [
     ConfigModule.forRoot({
@@ -21,7 +22,7 @@ import { CoursesModule } from './modules/courses/courses.module';
       validationSchema: configValidationSchema
     }),
     TeachersModule, 
-    SharedModule, UsersModule, SchoolsModule, SubjectsModule, HoursModule, CoursesModule
+    SharedModule, UsersModule, SchoolsModule, SubjectsModule, HoursModule, CoursesModule, AuthModule
   ],
   controllers: [AppController],
   providers: [AppService],

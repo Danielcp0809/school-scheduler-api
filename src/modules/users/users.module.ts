@@ -10,6 +10,7 @@ import { School } from 'src/models/schools.entity';
 @Module({
   imports: [TypeOrmModule.forFeature([Credentials, User, School])],
   controllers: [UsersController],
-  providers: [UsersService]
+  providers: [UsersService],
+  exports: [UsersService]
 })
 export class UsersModule {}

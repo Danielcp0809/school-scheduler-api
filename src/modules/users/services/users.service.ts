@@ -38,4 +38,24 @@ export class UsersService {
             }
         }
     }
+
+    async findUserByCredentials(search: string) {
+        try {
+            let userCredentials = await this.credentialsRepository.findOne({
+                where: [
+                    { username: search },
+                    { user: { email: search } }
+                ],
+                relations: ['user'],
+            });
+            if (!userCredentials) throw new NotFoundException('User not found');
+            delete userCredentials.user
+            return userCredentials;
+        } catch (error) {
+            if(error instanceof InternalServerErrorException){
+                throw new InternalServerErrorException(error.message);
+            }
+            throw error
+        }
+    }
 }

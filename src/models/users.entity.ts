@@ -21,7 +21,7 @@ export class User extends Audit {
     @Column({ type: 'bit', default: 1 })
     is_enabled: boolean;
 
-    @OneToOne(() => Credentials, (credentials) => credentials.user)
+    @OneToOne(() => Credentials, (credentials) => credentials.user, { cascade: ['insert']})
     credentials: Credentials;
 
     @OneToOne(() => Teacher, (teacher) => teacher.user, { nullable: true })
