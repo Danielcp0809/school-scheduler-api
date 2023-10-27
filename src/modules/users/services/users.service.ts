@@ -44,7 +44,7 @@ export class UsersService {
             let userCredentials = await this.credentialsRepository.findOne({
                 where: [
                     { username: search },
-                    { user: { email: search } }
+                    { user: { email: search, is_enabled: true } }
                 ],
                 relations: ['user'],
             });
