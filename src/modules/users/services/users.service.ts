@@ -49,7 +49,6 @@ export class UsersService {
                 relations: ['user'],
             });
             if (!userCredentials) throw new NotFoundException('User not found');
-            delete userCredentials.user
             return userCredentials;
         } catch (error) {
             if(error instanceof InternalServerErrorException){
