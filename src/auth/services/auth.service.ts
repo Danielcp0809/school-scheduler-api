@@ -1,7 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { UsersService } from 'src/modules/users/services/users.service';
 import * as bcrypt from 'bcrypt';
-import { LoginUserDto } from 'src/validators/users.dto';
 import { instanceToPlain } from 'class-transformer';
 
 @Injectable()
