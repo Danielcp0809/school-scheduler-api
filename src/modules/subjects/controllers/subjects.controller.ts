@@ -1,10 +1,12 @@
-import { Body, Controller, Delete, Get, Param, Post, Put, UsePipes } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, Put, UseGuards, UsePipes } from '@nestjs/common';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
 import { SubjectsService } from '../services/subjects.service';
 import { ValidatePayloadExistsPipe } from 'src/pipes/payload-exist/payload-exist.pipe';
 import { CreateSubjectDto, UpdateSubjectDto } from 'src/validators/subjects.dto';
+import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
 
 @ApiTags('Subject')
+@UseGuards(JwtAuthGuard)
 @Controller('subjects')
 export class SubjectsController {
 
