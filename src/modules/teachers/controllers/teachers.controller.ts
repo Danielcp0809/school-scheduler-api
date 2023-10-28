@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Post, Put, Query, SetMetadata, UseGuards, UsePipes } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Put, Query, Req, SetMetadata, UseGuards, UsePipes } from '@nestjs/common';
 import { TeachersService } from '../services/teachers.service';
 import { CreateTeacherDto, FiltersTeachersDto, UpdateTeacherDto } from 'src/validators/teachers.dto';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
@@ -14,7 +14,7 @@ export class TeachersController {
 
     @Get()
     @ApiOperation({ summary: 'Get the list of a teachers' })
-    getTeachers(@Query() params: FiltersTeachersDto) {
+    getTeachers(@Query() params: FiltersTeachersDto, @Req() req: any) {
         return this.teacherService.getAllTeachers(params);
     }
 

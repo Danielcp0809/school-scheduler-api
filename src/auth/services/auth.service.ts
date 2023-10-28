@@ -1,10 +1,12 @@
-import { Injectable } from '@nestjs/common';
+import { ForbiddenException, Injectable, UnauthorizedException } from '@nestjs/common';
 import { UsersService } from 'src/modules/users/services/users.service';
 import * as bcrypt from 'bcrypt';
 import { JwtService } from '@nestjs/jwt';
 import { Credentials } from 'src/models/credentials.entity';
 import { TokenPayload } from '../interfaces/token.interface';
 import { instanceToPlain } from 'class-transformer';
+import { RefreshTokenDto } from 'src/validators/auth.dto';
+import { TokenExpiredError } from 'jsonwebtoken';
 @Injectable()
 export class AuthService {
 
@@ -29,7 +31,23 @@ export class AuthService {
         }
         return {
             access_token: this.jwtService.sign(payload),
+            refresh_token: this.jwtService.sign(payload, {expiresIn: '7d'}),
             user: credentials.user,
+        }
+    }
+
+    async refreshToken(body: RefreshTokenDto){
+        try {
+            const payload = this.jwtService.verify(body.refresh_token);
+            const credentials = await this.usersServices.findUserByCredentials(payload.username);
+            if(!credentials) throw new UnauthorizedException('Invalid credentials');
+            const newCredentials = await this.generateJwtToken(credentials);
+            delete newCredentials.user;
+            return newCredentials;
+        } catch (error) {
+            if (error instanceof TokenExpiredError) {
+                throw new ForbiddenException('Token has expired');
+            }
         }
     }
 }

@@ -5,7 +5,6 @@ import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-
   // Swagger configuration
   const config = new DocumentBuilder()
     .setTitle('School Scheduler API')
@@ -24,7 +23,10 @@ async function bootstrap() {
     }
   }))
 
-  app.enableCors();
+  app.enableCors({
+    origin: 'http://localhost:3000',
+    credentials: true,
+  });
   await app.listen(process.env.APP_PORT || 3030);
 }
 bootstrap();
