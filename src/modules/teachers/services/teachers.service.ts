@@ -43,7 +43,8 @@ export class TeachersService {
         if (!isUUID(id)) throw new BadRequestException('Id has an invalid UUID format');
         let teacher = await this.teachersRepository.findOneBy({ id })
         if(!teacher) throw new NotFoundException('Teacher not found')
-        return await this.teachersRepository.merge(teacher, body);
+        teacher = this.teachersRepository.merge(teacher, body);
+        return await this.teachersRepository.save(teacher);
     }
 
 }
