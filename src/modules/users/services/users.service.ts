@@ -23,10 +23,11 @@ export class UsersService {
             if (!isUUID(school_id)) throw new BadRequestException('School id has an invalid UUID format');
             const newUser = this.userRepository.create({ first_name, last_name, email });
             const encryptedPassword = await bcrypt.hash(password, 10);
-            const newCredentials = this.credentialsRepository.create({ username, password: encryptedPassword });
+            let newCredentials = new Credentials();
+            newCredentials.username = username
+            newCredentials.password = encryptedPassword;
             const school = await this.schoolRepository.findOneBy({ id: school_id });
             if (!school) throw new NotFoundException('School not found');
-            newCredentials.save();
             newUser.school = school;
             newUser.credentials = newCredentials;
             return await this.userRepository.save(newUser);
