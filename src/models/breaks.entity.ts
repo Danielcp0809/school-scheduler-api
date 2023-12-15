@@ -7,16 +7,16 @@ export class Breaks extends Audit {
     @PrimaryGeneratedColumn('uuid')
     id: string;
 
-    @Column({ type: 'varchar', length: 100, nullable: false, unique: true })
+    @Column({ type: 'varchar', length: 100})
     name: string;
 
-    @Column({ type: 'int', nullable: false })
+    @Column({ type: 'int' })
     start_time: number;
 
-    @Column({ type: 'int', nullable: false })
+    @Column({ type: 'int' })
     end_time: number;
 
-    @Column({ type: 'varchar', length: 50, nullable: false })
+    @Column({ type: 'varchar', length: 50 })
     week_days: string;
 
     @Column({ type: 'int', default: 0 })
