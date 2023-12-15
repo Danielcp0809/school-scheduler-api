@@ -3,6 +3,7 @@ import { Column, PrimaryGeneratedColumn, OneToMany, JoinColumn, Entity } from "t
 import { Teacher } from "./teachers.entity";
 import { User } from "./users.entity";
 import { Course } from "./courses.entity";
+import { Settings } from "./settings.entity";
 
 @Entity('Schools')
 export class School extends Audit {
@@ -35,4 +36,7 @@ export class School extends Audit {
 
     @OneToMany(() => Course, (course) => course.school)
     courses: Course[];
+
+    @OneToMany(() => Settings, (setting) => setting.school)
+    settings: Settings[];
 }
