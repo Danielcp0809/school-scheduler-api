@@ -19,4 +19,11 @@ export class SchoolsService {
         school = this.schoolRepository.merge(school, body);
         return await this.schoolRepository.save(school);
     }
+
+    async getSchoolById(id: string) {
+        if (!isUUID(id)) throw new BadRequestException('Id has an invalid UUID format');
+        let school = await this.schoolRepository.findOneBy({ id })
+        if(!school) throw new NotFoundException('School not found')
+        return school;
+    }
 }
