@@ -13,6 +13,7 @@ import { SubjectsModule } from './modules/subjects/subjects.module';
 import { HoursModule } from './modules/hours/hours.module';
 import { CoursesModule } from './modules/courses/courses.module';
 import { AuthModule } from './auth/auth.module';
+import { SettingsModule } from './modules/settings/settings.module';
 @Module({ 
   imports: [
     ConfigModule.forRoot({
@@ -22,7 +23,7 @@ import { AuthModule } from './auth/auth.module';
       validationSchema: configValidationSchema
     }),
     TeachersModule, 
-    SharedModule, UsersModule, SchoolsModule, SubjectsModule, HoursModule, CoursesModule, AuthModule
+    SharedModule, UsersModule, SchoolsModule, SubjectsModule, HoursModule, CoursesModule, AuthModule, SettingsModule
   ],
   controllers: [AppController],
   providers: [AppService],
